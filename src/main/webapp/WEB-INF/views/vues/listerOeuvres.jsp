@@ -30,10 +30,11 @@
                     <td>${item.prixOeuvrevente}</td>
                     <td>${item.proprietaire.prenomProprietaire}</td>
                     <td>${item.proprietaire.nomProprietaire}</td>
-                    <td><a class="btn btn-info" href="reserverOeuvre.htm?id=${item.idOeuvrevente}" role="button"><span
+                    <td><a class="btn btn-info" href="reserverOeuvre.htm?id=${item.idOeuvrevente}" role="button" ${ item.etatOeuvrevente.equals('R') ? 'disabled="disabled"' : ''}><span
                             class="glyphicon glyphicon-pencil"></span> Réserver</a>
                         <a class="btn btn-danger" href="modifierOeuvre.htm?id=${item.idOeuvrevente}" role="button"><span
-                                class="glyphicon glyphicon-remove-circle"></span> Modifier</a></td>
+                                class="glyphicon glyphicon-remove-circle"></span> Modifier</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

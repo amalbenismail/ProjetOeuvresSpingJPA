@@ -41,6 +41,23 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
+    @RequestMapping(value = "modifierOeuvre.htm")
+    public ModelAndView modifierOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            request.setAttribute("Oeuvre", unServiceOeuvre.consulterOeuvre(id));
+            request.setAttribute("lesProprietaires", unServiceOeuvre.getProprietaires());
+
+            destinationPage = "/vues/modifierOeuvre";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
+
 
 
 }

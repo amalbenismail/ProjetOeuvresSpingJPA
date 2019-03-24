@@ -2,6 +2,7 @@ package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.metier.OeuvreventeEntity;
+import com.epul.oeuvres.metier.ProprietaireEntity;
 
 import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
@@ -32,5 +33,48 @@ public class ServiceOeuvre extends EntityService {
             e.printStackTrace();
         }
         return mesOeuvresVentes;
+    }
+
+    public OeuvreventeEntity consulterOeuvre(int id)  throws MonException
+    {
+        List<OeuvreventeEntity> oeuvreventes = null;
+        OeuvreventeEntity oeuvrevente = new OeuvreventeEntity();
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+
+            oeuvreventes = (List<OeuvreventeEntity>)entitymanager.createQuery("SELECT o FROM OeuvreventeEntity o WHERE o.idOeuvrevente="+id).getResultList();
+            oeuvrevente = oeuvreventes.get(0);
+            entitymanager.close();
+        }catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return oeuvrevente;
+
+    }
+
+
+    public List<ProprietaireEntity> getProprietaires() throws MonException {
+        List<ProprietaireEntity> lesProprietaires = null;
+        try
+        {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            lesProprietaires = (List<ProprietaireEntity>)
+                    entitymanager.createQuery(
+                            "SELECT p FROM ProprietaireEntity p " +
+                                    "ORDER BY p.nomProprietaire").getResultList();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lesProprietaires;
     }
 }
