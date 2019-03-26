@@ -118,5 +118,26 @@ public class Service extends EntityService{
 		return unUtilisateur;
 	}
 
+	/* Supprimer un adherent
+	 * param Adherent unAdherent
+	 * */
+	public void supprimerAdherent(int id) throws MonException {
+		try
+		{
+			EntityTransaction transac = startTransaction();
+			transac.begin();
+			//AdherentEntity unAdherent = entitymanager.find()
+			entitymanager.createQuery("DELETE FROM AdherentEntity a where a.idAdherent="+id).executeUpdate() ;
+			transac.commit();
+			entitymanager.close();
+		}
+		catch (RuntimeException e)
+		{
+			new MonException("Erreur de lecture", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }

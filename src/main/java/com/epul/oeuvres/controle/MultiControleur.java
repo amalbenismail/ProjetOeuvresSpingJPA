@@ -20,7 +20,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 ///
-/// Les méthode du contrôleur répondent à des sollicitations
+/// Les mï¿½thode du contrï¿½leur rï¿½pondent ï¿½ des sollicitations
 /// des pages JSP
 
 @Controller
@@ -79,6 +79,7 @@ public class MultiControleur {
 		return new ModelAndView(destinationPage);
 	}
 
+
 	@RequestMapping(value = "modifierAdherent.htm")
 	public ModelAndView modifierAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -112,6 +113,24 @@ public class MultiControleur {
 			Service unService = new Service();
 			unService.modifierAdherent(unAdherent);
 			destinationPage = "index";
+		} catch (Exception e) {
+			request.setAttribute("MesErreurs", e.getMessage());
+			destinationPage = "vues/Erreur";
+		}
+
+		return new ModelAndView(destinationPage);
+	}
+
+
+	@RequestMapping(value = "supprimerAdherent.htm")
+	public ModelAndView supprimerAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage = "";
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+			Service unService = new Service();
+			unService.supprimerAdherent(id);
+			destinationPage = "index";
+
 		} catch (Exception e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "vues/Erreur";
