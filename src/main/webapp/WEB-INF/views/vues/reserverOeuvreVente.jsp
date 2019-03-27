@@ -15,7 +15,7 @@
             <label class="col-md-3 control-label">Titre de l'oeuvre </label>
             <div class="col-md-3">
                 <INPUT type="hidden" name="idOeuvrevente" value="${Oeuvre.idOeuvrevente}" id="idOeuvrevente" class="form-control" min="0">
-                <INPUT type="text" name="txttitre" value="${Oeuvre.titreOeuvrevente}" id="titre" class="form-control" min="0">
+                <INPUT type="text" name="txttitre" disabled value="${Oeuvre.titreOeuvrevente}" id="titre" class="form-control" min="0">
             </div>
 
         </div>
@@ -26,7 +26,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Prix </label>
             <div class="col-md-3">
-                <INPUT type="text" name="prixoeuvre" value="${Oeuvre.prixOeuvrevente}" id="prix" class="form-control" min="0">
+                <INPUT type="text" name="prixoeuvre" disabled value="${Oeuvre.prixOeuvrevente}" id="prix" class="form-control" min="0">
             </div>
         </div>
         <div class="row" >
@@ -34,12 +34,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Adherent  </label>
+            <label class="col-md-3 control-label">Adherent</label>
             <div class="col-md-3">
                 <select name="proprietaires" class="form-control">
-                    <c:forEach items="${lesProprietaires}" var="proprietaire">
-                        <option id=${proprietaire.getIdProprietaire().toString()} value=${proprietaire.getIdProprietaire()}  ${ Oeuvre.proprietaire.getIdProprietaire().equals(proprietaire.getIdProprietaire()) ? 'selected="selected"' : ''}>
-                                ${proprietaire.getNomProprietaire()} ${proprietaire.getPrenomProprietaire()}
+                    <c:forEach items="${lesAdherents}" var="proprietaire">
+                        <option id=${proprietaire.getIdAdherent().toString()} value=${proprietaire.getIdAdherent()} >
+                                ${proprietaire.getPrenomAdherent()} ${proprietaire.getNomAdherent()}
                         </option>
                     </c:forEach>
                 </select>
@@ -53,7 +53,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Date Réservation </label>
             <div class="col-md-3">
-                <INPUT type="date" name="date" class="form-control" min="0">
+                <INPUT type="date" name="date"  required class="form-control" min="0">
             </div>
         </div>
 

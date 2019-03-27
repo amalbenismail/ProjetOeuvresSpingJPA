@@ -176,12 +176,12 @@ public class GestionDesOeuvres {
     public ModelAndView reserverOeuvreVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
         try {
-            int idOeuvreVente = Integer.parseInt(request.getParameter("id"));
-            // A supprimer
-            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
-            OeuvrepretEntity uneOeuvrePret = new OeuvrepretEntity();
-            unServiceOeuvre.modifierOeuvrePret(uneOeuvrePret);
 
+            int id = Integer.parseInt(request.getParameter("id"));
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            request.setAttribute("Oeuvre", unServiceOeuvre.consulterOeuvre(id));
+            Service unService = new Service();
+            request.setAttribute("lesAdherents", unService.consulterListeAdherents() );
 
 
             destinationPage = "/vues/reserverOeuvreVente";
