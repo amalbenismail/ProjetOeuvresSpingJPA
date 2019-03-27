@@ -4,10 +4,9 @@
 <%@include file="header.jsp" %>
 <body>
 <%@include file="navigation.jsp"%>
-<H1> Modification d'une oeuvre </H1>
-<form method="post" action="submitModifierOeuvreVente.htm">
+<H1> Modification d'une oeuvre en pret </H1>
+<form method="post" action="submitModifierOeuvrePret.htm">
     <div class="col-md-12 well well-md">
-        <h1>Modifier une oeuvre</h1>
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>
@@ -15,20 +14,10 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Titre de l'oeuvre </label>
             <div class="col-md-3">
-                <INPUT type="hidden" name="idOeuvrevente" value="${Oeuvre.idOeuvrevente}" id="idOeuvrevente" class="form-control" min="0">
-                <INPUT type="text" name="txttitre" value="${Oeuvre.titreOeuvrevente}" id="titre" class="form-control" min="0">
+                <INPUT type="hidden" name="idOeuvrepret" value="${Oeuvre.idOeuvrepret}" id="idOeuvrepret" class="form-control" min="0">
+                <INPUT type="text" name="txttitre" value="${Oeuvre.titreOeuvrepret}" id="titre" class="form-control" min="0">
             </div>
 
-        </div>
-        <div class="row" >
-            <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">Prix </label>
-            <div class="col-md-3">
-                <INPUT type="text" name="prixoeuvre" value="${Oeuvre.prixOeuvrevente}" id="prix" class="form-control" min="0">
-            </div>
         </div>
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">

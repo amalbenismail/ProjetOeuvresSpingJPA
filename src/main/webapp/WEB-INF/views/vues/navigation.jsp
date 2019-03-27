@@ -36,8 +36,10 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="ajouterOeuvreVente.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout Oeuvre</a></li>
-                        <li><a href="listerOeuvresVente.htm"><span class="glyphicon glyphicon-th-list"></span> Lister les oeuvres</a></li>
+                        <li><a href="ajouterOeuvreVente.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout une oeuvre en vente </a></li>
+                        <li><a href="listerOeuvresVente.htm"><span class="glyphicon glyphicon-th-list"></span> Consulter les oeuvres en vente</a></li>
+                        <li><a href="listerOeuvresPret.htm"><span class="glyphicon glyphicon-th-list"></span> Consulter les oeuvres en pret</a></li>
+
                     </ul>
                 </li>
                 <li><a href="javascript:fermer()"><span class="glyphicon glyphicon-log-out"></span> Quitter</a></li>

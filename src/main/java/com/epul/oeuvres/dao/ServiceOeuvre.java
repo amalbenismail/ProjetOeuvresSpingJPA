@@ -2,6 +2,7 @@ package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.metier.AdherentEntity;
+import com.epul.oeuvres.metier.OeuvrepretEntity;
 import com.epul.oeuvres.metier.OeuvreventeEntity;
 import com.epul.oeuvres.metier.ProprietaireEntity;
 
@@ -54,6 +55,28 @@ public class ServiceOeuvre extends EntityService {
             e.printStackTrace();
         }
         return oeuvrevente;
+
+    }
+
+
+    public OeuvrepretEntity consulterOeuvrePret(int id)  throws MonException
+    {
+        List<OeuvrepretEntity> oeuvrepretEntityList = null;
+        OeuvrepretEntity oeuvrepretEntity = new OeuvrepretEntity();
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+
+            oeuvrepretEntityList = (List<OeuvrepretEntity>)entitymanager.createQuery("SELECT o FROM OeuvrepretEntity o WHERE o.idOeuvrepret="+id).getResultList();
+            oeuvrepretEntity = oeuvrepretEntityList.get(0);
+            entitymanager.close();
+        }catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return oeuvrepretEntity;
 
     }
 
@@ -116,4 +139,45 @@ public class ServiceOeuvre extends EntityService {
         }
         return proprietaires.get(0);
     }
+
+
+    public List<OeuvrepretEntity> consulterListeOeuvresPret() throws MonException {
+
+        List<OeuvrepretEntity> mesOeuvresPret = null;
+        try
+        {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            mesOeuvresPret = (List<OeuvrepretEntity>)
+                    entitymanager.createQuery(
+                            "SELECT o FROM OeuvrepretEntity o " +
+                                    "ORDER BY o.titreOeuvrepret").getResultList();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mesOeuvresPret;
+    }
+
+    public void modifierOeuvrePret(OeuvrepretEntity uneOeuvrePret) throws MonException {
+        try
+        {
+            EntityTransaction transac2 = startTransaction();
+            transac2.begin();
+            entitymanager.merge(uneOeuvrePret);
+            transac2.commit();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

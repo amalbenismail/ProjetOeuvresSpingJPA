@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class OeuvrepretEntity {
     private int idOeuvrepret;
     private String titreOeuvrepret;
-
+    private ProprietaireEntity proprietaire;
     @Id
     @Column(name = "id_oeuvrepret")
     public int getIdOeuvrepret() {
@@ -43,6 +43,15 @@ public class OeuvrepretEntity {
             return false;
 
         return true;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_proprietaire", referencedColumnName = "id_proprietaire", nullable = false)
+    public ProprietaireEntity getProprietaire() {
+        return proprietaire;
+    }
+    public void setProprietaire(ProprietaireEntity proprietaire) {
+        this.proprietaire = proprietaire;
     }
 
     @Override

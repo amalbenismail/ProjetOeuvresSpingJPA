@@ -117,4 +117,64 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
+    @RequestMapping(value = "listerOeuvresPret.htm")
+    public ModelAndView listerOeuvresPret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            request.setAttribute("mesOeuvresPret", unServiceOeuvre.consulterListeOeuvresPret());
+            destinationPage = "/vues/listerOeuvresPret";
+        } catch (MonException e) {
+            e.printStackTrace();
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "modifierOeuvrePret.htm")
+    public ModelAndView modifierOeuvrePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            request.setAttribute("Oeuvre", unServiceOeuvre.consulterOeuvrePret(id));
+            request.setAttribute("lesProprietaires", unServiceOeuvre.getProprietaires());
+
+            destinationPage = "/vues/modifierOeuvrePret";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
+
+
+    @RequestMapping(value = "submitModifierOeuvrePret.htm")
+    public ModelAndView submitModifierOeuvrePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
+
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            OeuvrepretEntity uneOeuvrePret = new OeuvrepretEntity();
+            uneOeuvrePret.setIdOeuvrepret(Integer.parseInt(request.getParameter("idOeuvrepret")));
+            uneOeuvrePret.setTitreOeuvrepret(request.getParameter("txttitre"));
+
+            uneOeuvrePret.setProprietaire(unServiceOeuvre.getProprietaireById( Integer.parseInt(request.getParameter("proprietaires"))   ));
+
+            unServiceOeuvre.modifierOeuvrePret(uneOeuvrePret);
+
+            destinationPage = "index";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
+
+
+
+
+
+
 }
