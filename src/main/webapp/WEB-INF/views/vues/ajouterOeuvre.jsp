@@ -32,9 +32,10 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Prix de l'oeuvre : </label>
             <div class="col-md-3">
-                <INPUT type="text" name="txtprix" value="" id="prenom" class="form-control" min="0">
+                <INPUT type="text" name="txtprix" value="" id="prix" class="form-control" min="0">
             </div>
         </div>
+
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>

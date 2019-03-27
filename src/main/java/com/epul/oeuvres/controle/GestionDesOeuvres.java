@@ -65,16 +65,19 @@ public class GestionDesOeuvres {
         try {
 
            // System.out.println("proprietaire "+request.getParameterValues("proprietaires")[0]);
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
 
             OeuvreventeEntity uneOeuvreVente = new OeuvreventeEntity();
             uneOeuvreVente.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvrevente")));
-            uneOeuvreVente.setPrixOeuvrevente(Integer.parseInt(request.getParameter("prixoeuvre")));
+            uneOeuvreVente.setPrixOeuvrevente(Double.parseDouble(request.getParameter("prixoeuvre")));
             uneOeuvreVente.setTitreOeuvrevente(request.getParameter("txttitre"));
+            uneOeuvreVente.setEtatOeuvrevente(unServiceOeuvre.consulterOeuvre(Integer.parseInt(request.getParameter("idOeuvrevente"))).getEtatOeuvrevente());
             ProprietaireEntity leProprietaire = new ProprietaireEntity();
-            leProprietaire.setIdProprietaire(Integer.parseInt(request.getParameterValues("proprietaires")[0]));
-            uneOeuvreVente.setProprietaire(leProprietaire);
+            //leProprietaire.setIdProprietaire(Integer.parseInt(request.getParameterValues("proprietaires")[0]));
+            //uneOeuvreVente.setProprietaire(leProprietaire);
 
-            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            uneOeuvreVente.setProprietaire(unServiceOeuvre.getProprietaireById( Integer.parseInt(request.getParameter("proprietaires"))   ));
+
             unServiceOeuvre.modifierOeuvreVente(uneOeuvreVente);
             destinationPage = "index";
         } catch (MonException e) {
@@ -84,7 +87,7 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
-    @RequestMapping(value = "ajouterOeuvre.htm")
+    @RequestMapping(value = "ajouterOeuvreVente.htm")
     public ModelAndView ajouterOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String destinationPage = "";

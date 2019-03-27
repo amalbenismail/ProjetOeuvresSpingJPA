@@ -39,7 +39,7 @@
             <div class="col-md-3">
                 <select name="proprietaires" class="form-control">
                     <c:forEach items="${lesProprietaires}" var="proprietaire">
-                        <option id=${proprietaire.getIdProprietaire().toString()} value=${proprietaire.getIdProprietaire().toString()} name="proprietaire" ${ item.proprietaire.getIdProprietaire().equals(proprietaire.getIdProprietaire()) ? 'selected="selected"' : ''}>
+                        <option id=${proprietaire.getIdProprietaire().toString()} value=${proprietaire.getIdProprietaire()}  ${ item.proprietaire.getIdProprietaire().equals(proprietaire.getIdProprietaire()) ? 'selected="selected"' : ''}>
                                 ${proprietaire.getNomProprietaire()} ${proprietaire.getPrenomProprietaire()}
                         </option>
                     </c:forEach>
