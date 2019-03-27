@@ -58,6 +58,7 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
+
     @RequestMapping(value = "submitModifierOeuvreVente.htm")
     public ModelAndView submitModifierOeuvreVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
@@ -80,6 +81,36 @@ public class GestionDesOeuvres {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/vues/Erreur";
         }
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "ajouterOeuvre.htm")
+    public ModelAndView ajouterOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+            destinationPage = "vues/ajouterOeuvre";
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "vues/Erreur";
+        }
+
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "insererOeuvre.htm")
+    public ModelAndView insererOeuvre(HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+            //OeuvreventeEntity oeuvre = new OeuvreventeEntity();
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "vues/Erreur";
+        }
+        destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
 

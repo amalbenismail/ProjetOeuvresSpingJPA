@@ -22,3 +22,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+## Connexion a la base de donnee##
+./src/main/resources/META-INF/persistence.xml
