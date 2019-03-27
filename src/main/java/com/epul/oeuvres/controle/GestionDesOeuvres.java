@@ -27,13 +27,13 @@ import java.security.NoSuchAlgorithmException;
 public class GestionDesOeuvres {
 
 
-    @RequestMapping(value = "listerOeuvres.htm")
-    public ModelAndView listerOeuvres(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "listerOeuvresVente.htm")
+    public ModelAndView listerOeuvresVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
         try {
             ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
             request.setAttribute("mesOeuvresVentes", unServiceOeuvre.consulterListeOeuvres());
-            destinationPage = "/vues/listerOeuvres";
+            destinationPage = "/vues/listerOeuvresVente";
         } catch (MonException e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/vues/Erreur";
@@ -41,8 +41,8 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
-    @RequestMapping(value = "modifierOeuvre.htm")
-    public ModelAndView modifierOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "modifierOeuvreVente.htm")
+    public ModelAndView modifierOeuvreVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
         try {
             int id = Integer.parseInt(request.getParameter("id"));
@@ -50,7 +50,7 @@ public class GestionDesOeuvres {
             request.setAttribute("Oeuvre", unServiceOeuvre.consulterOeuvre(id));
             request.setAttribute("lesProprietaires", unServiceOeuvre.getProprietaires());
 
-            destinationPage = "/vues/modifierOeuvre";
+            destinationPage = "/vues/modifierOeuvreVente";
         } catch (MonException e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/vues/Erreur";
@@ -58,6 +58,29 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
+    @RequestMapping(value = "submitModifierOeuvreVente.htm")
+    public ModelAndView submitModifierOeuvreVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
 
+           // System.out.println("proprietaire "+request.getParameterValues("proprietaires")[0]);
+
+            OeuvreventeEntity uneOeuvreVente = new OeuvreventeEntity();
+            uneOeuvreVente.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvrevente")));
+            uneOeuvreVente.setPrixOeuvrevente(Integer.parseInt(request.getParameter("prixoeuvre")));
+            uneOeuvreVente.setTitreOeuvrevente(request.getParameter("txttitre"));
+            ProprietaireEntity leProprietaire = new ProprietaireEntity();
+            leProprietaire.setIdProprietaire(Integer.parseInt(request.getParameterValues("proprietaires")[0]));
+            uneOeuvreVente.setProprietaire(leProprietaire);
+
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            unServiceOeuvre.modifierOeuvreVente(uneOeuvreVente);
+            destinationPage = "index";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
 
 }

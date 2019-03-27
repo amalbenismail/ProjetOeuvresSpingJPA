@@ -77,4 +77,21 @@ public class ServiceOeuvre extends EntityService {
         }
         return lesProprietaires;
     }
+
+    public void modifierOeuvreVente(OeuvreventeEntity uneOeuvreVente) throws MonException {
+        try
+        {
+            EntityTransaction transac2 = startTransaction();
+            transac2.begin();
+            entitymanager.merge(uneOeuvreVente);
+            transac2.commit();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

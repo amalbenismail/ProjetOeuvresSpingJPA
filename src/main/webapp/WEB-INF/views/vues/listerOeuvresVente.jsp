@@ -6,14 +6,14 @@
 <%@include file="navigation.jsp"%>
 
 <div class="jumbotron text-center">
-    <h1>Listing des oeuvres</h1>
+    <h1>Listing des oeuvres en vente</h1>
 </div>
 
 <div class="container">
     <a class="btn btn-secondary" href="../index.jsp" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
-    <h2>Tableau des Oeuvres</h2>
+    <h2>Tableau des Oeuvres en vente</h2>
     <div class="container">
-        <h3>Liste des Oeuvres</h3>
+        <h3>Liste des Oeuvres en Vente</h3>
         <table class="table table-hover">
             <tr>
                 <th class="col-md-1">Titre</th>
@@ -30,9 +30,9 @@
                     <td>${item.prixOeuvrevente}</td>
                     <td>${item.proprietaire.prenomProprietaire}</td>
                     <td>${item.proprietaire.nomProprietaire}</td>
-                    <td><a class="btn btn-info" href="reserverOeuvre.htm?id=${item.idOeuvrevente}" role="button" ${ item.etatOeuvrevente.equals('R') ? 'disabled="disabled"' : ''}><span
+                    <td><a class="btn btn-info" href="reserverOeuvreVente.htm?id=${item.idOeuvrevente}" role="button" ${ item.etatOeuvrevente.equals('R') ? 'disabled="disabled"' : ''}><span
                             class="glyphicon glyphicon-pencil"></span> Réserver</a>
-                        <a class="btn btn-danger" href="modifierOeuvre.htm?id=${item.idOeuvrevente}" role="button"><span
+                        <a class="btn btn-danger" href="modifierOeuvreVente.htm?id=${item.idOeuvrevente}" role="button"><span
                                 class="glyphicon glyphicon-remove-circle"></span> Modifier</a>
                     </td>
                 </tr>

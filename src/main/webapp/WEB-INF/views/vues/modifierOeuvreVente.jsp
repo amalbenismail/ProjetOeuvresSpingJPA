@@ -5,7 +5,7 @@
 <body>
 <%@include file="navigation.jsp"%>
 <H1> Modification d'une oeuvre </H1>
-<form method="post" action="ServletControleur?action=submitModifierOeuvre">
+<form method="post" action="submitModifierOeuvreVente.htm">
     <div class="col-md-12 well well-md">
         <h1>Modifier une oeuvre</h1>
         <div class="row" >
@@ -37,9 +37,11 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Proprietaire  </label>
             <div class="col-md-3">
-                <select name="proprietaire" class="form-control">
+                <select name="proprietaires" class="form-control">
                     <c:forEach items="${lesProprietaires}" var="proprietaire">
-                        <option id=proprietaire.getIdProprietaire().toString() name="proprietaire">${proprietaire.getNomProprietaire()} ${proprietaire.getPrenomProprietaire()}</option>
+                        <option id=${proprietaire.getIdProprietaire().toString()} value=${proprietaire.getIdProprietaire().toString()} name="proprietaire" ${ item.proprietaire.getIdProprietaire().equals(proprietaire.getIdProprietaire()) ? 'selected="selected"' : ''}>
+                                ${proprietaire.getNomProprietaire()} ${proprietaire.getPrenomProprietaire()}
+                        </option>
                     </c:forEach>
                 </select>
 
