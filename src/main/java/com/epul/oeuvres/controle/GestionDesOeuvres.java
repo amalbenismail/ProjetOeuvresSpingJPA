@@ -172,6 +172,26 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
+    @RequestMapping(value = "reserverOeuvreVente.htm")
+    public ModelAndView reserverOeuvreVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
+            int idOeuvreVente = Integer.parseInt(request.getParameter("id"));
+            // A supprimer
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            OeuvrepretEntity uneOeuvrePret = new OeuvrepretEntity();
+            unServiceOeuvre.modifierOeuvrePret(uneOeuvrePret);
+
+
+
+            destinationPage = "/vues/reserverOeuvreVente";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
+
 
 
 
