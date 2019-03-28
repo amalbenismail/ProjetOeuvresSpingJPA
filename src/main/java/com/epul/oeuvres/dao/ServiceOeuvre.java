@@ -1,10 +1,7 @@
 package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
-import com.epul.oeuvres.metier.AdherentEntity;
-import com.epul.oeuvres.metier.OeuvrepretEntity;
-import com.epul.oeuvres.metier.OeuvreventeEntity;
-import com.epul.oeuvres.metier.ProprietaireEntity;
+import com.epul.oeuvres.metier.*;
 
 import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
@@ -102,6 +99,23 @@ public class ServiceOeuvre extends EntityService {
         return lesProprietaires;
     }
 
+    public void insererOeuvreVente(OeuvreventeEntity uneOeuvreVente) throws MonException {
+        try
+        {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            entitymanager.persist(uneOeuvreVente);
+            transac.commit();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void modifierOeuvreVente(OeuvreventeEntity uneOeuvreVente) throws MonException {
         try
         {
@@ -179,5 +193,29 @@ public class ServiceOeuvre extends EntityService {
             e.printStackTrace();
         }
     }
+
+
+    public List<ReservationEntity> getReservationsEnAttente() throws MonException {
+
+        List<ReservationEntity> lesReservationsEnAttente = null;
+        try
+        {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            lesReservationsEnAttente = (List<ReservationEntity>)
+                    entitymanager.createQuery(
+                            "SELECT r FROM ReservationEntity r " +
+                                    "WHERE r.statut='en attente'").getResultList();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lesReservationsEnAttente;
+    }
+
 
 }

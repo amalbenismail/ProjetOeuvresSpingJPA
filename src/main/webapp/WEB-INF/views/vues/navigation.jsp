@@ -39,6 +39,7 @@
                         <li><a href="ajouterOeuvreVente.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout une oeuvre en vente </a></li>
                         <li><a href="listerOeuvresVente.htm"><span class="glyphicon glyphicon-th-list"></span> Consulter les oeuvres en vente</a></li>
                         <li><a href="listerOeuvresPret.htm"><span class="glyphicon glyphicon-th-list"></span> Consulter les oeuvres en pret</a></li>
+                        <li><a href="confirmerLesReservations.htm"><span class="glyphicon glyphicon-th-list"></span>Confirmation des reservations</a></li>
 
                     </ul>
                 </li>

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: arimoussa
-  Date: 2019-03-26
-  Time: 21:38
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
@@ -12,16 +5,16 @@
 <body>
 <%@include file="navigation.jsp"%>
 <H1> Ajout d'une oeuvre </H1>
-<form method="post" action="insererOeuvre.htm" onsubmit="return teste()">
+<form method="post" action="insererOeuvreVente.htm">
     <div class="col-md-12 well well-md">
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Titre de l'oeuvre : </label>
+            <label class="col-md-3 control-label">Titre de l'oeuvre </label>
             <div class="col-md-3">
-                <INPUT type="text" name="txttitre" value="" id="nom" class="form-control" min="0">
+                <INPUT type="text" name="txttitre"  id="titre" class="form-control" min="0">
             </div>
 
         </div>
@@ -30,26 +23,33 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Prix de l'oeuvre : </label>
+            <label class="col-md-3 control-label">Prix </label>
             <div class="col-md-3">
-                <INPUT type="text" name="txtprix" value="" id="prix" class="form-control" min="0">
+                <INPUT type="text" name="prixoeuvre" id="prix" class="form-control" min="0">
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Proprietaire  </label>
+            <div class="col-md-3">
+                <select name="proprietaires" class="form-control">
+                    <c:forEach items="${lesProprietaires}" var="proprietaire">
+                        <option id=${proprietaire.getIdProprietaire().toString()} value=${proprietaire.getIdProprietaire()}>
+                                ${proprietaire.getNomProprietaire()} ${proprietaire.getPrenomProprietaire()}
+                        </option>
+                    </c:forEach>
+                </select>
+
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>
         </div>
 
-        <div class="row" >
-            <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">Id proprietaire : </label>
-            <div class="col-md-3">
-                <INPUT type="text" name="txtproprio" value="" id="ville" class="form-control" min="0">
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
-            </div>
-        </div>
 
         <div class="form-group">
             <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-ok"></span>
@@ -58,7 +58,7 @@
 
             <button type="button" class="btn btn-default btn-primary"
                     onclick="{
-                            window.location = '../index.jsp';
+                            window.location = '../index.htm';
                         }">
                 <span class="glyphicon glyphicon-remove"></span> Annuler
 
@@ -66,7 +66,6 @@
         </div>
     </div>
 </form>
-<%@include file="footer.jsp"%>
 </body>
-
+<%@include file="footer.jsp"%>
 </html>

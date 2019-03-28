@@ -92,6 +92,9 @@ public class GestionDesOeuvres {
 
         String destinationPage = "";
         try {
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            request.setAttribute("lesProprietaires", unServiceOeuvre.getProprietaires());
+
             destinationPage = "vues/ajouterOeuvre";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
@@ -101,14 +104,37 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
-    @RequestMapping(value = "insererOeuvre.htm")
-    public ModelAndView insererOeuvre(HttpServletRequest request,
+    @RequestMapping(value = "insererOeuvreVente.htm")
+    public ModelAndView insererOeuvreVente(HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+            OeuvreventeEntity uneOeuvreVente = new OeuvreventeEntity();
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+
+            uneOeuvreVente.setPrixOeuvrevente(Double.parseDouble(request.getParameter("prixoeuvre")));
+            uneOeuvreVente.setTitreOeuvrevente(request.getParameter("txttitre"));
+            uneOeuvreVente.setEtatOeuvrevente("L");
+            uneOeuvreVente.setProprietaire(unServiceOeuvre.getProprietaireById( Integer.parseInt(request.getParameter("proprietaires"))   ));
+
+            unServiceOeuvre.insererOeuvreVente(uneOeuvreVente);
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "vues/Erreur";
+        }
+        destinationPage = "index";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "insererOeuvrePret.htm")
+    public ModelAndView insererOeuvrePret(HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
 
         String destinationPage = "";
         try {
             //OeuvreventeEntity oeuvre = new OeuvreventeEntity();
-
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "vues/Erreur";
@@ -185,6 +211,20 @@ public class GestionDesOeuvres {
 
 
             destinationPage = "/vues/reserverOeuvreVente";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "confirmerLesReservations.htm")
+    public ModelAndView confirmerLesReservations(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            request.setAttribute("lesReservations", unServiceOeuvre.getReservationsEnAttente());
+            destinationPage = "/vues/confirmationDesOeuvres";
         } catch (MonException e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/vues/Erreur";
