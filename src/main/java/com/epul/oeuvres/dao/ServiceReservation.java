@@ -2,12 +2,14 @@ package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.metier.ReservationEntity;
+import com.epul.oeuvres.metier.ReservationventeEntity;
+
 import javax.persistence.EntityTransaction;
 
 
 public class ServiceReservation extends EntityService  {
 
-    public void insertReservation(ReservationEntity uneReservervationVente) throws MonException {
+    public void insertReservation(ReservationventeEntity uneReservervationVente) throws MonException {
         try
         {
             EntityTransaction transac = startTransaction();

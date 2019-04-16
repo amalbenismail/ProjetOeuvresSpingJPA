@@ -77,10 +77,10 @@ public class GestionReservation {
             // rajout d'une reservation dans la table reservation
             Service unService = new Service();
             ServiceReservation unServiceReservation = new ServiceReservation();
-            ReservationEntity uneReservationVente = new ReservationEntity();
+            ReservationventeEntity uneReservationVente = new ReservationventeEntity();
 
-            uneReservationVente.setAdherentByIdAdherent(unService.adherentById( Integer.parseInt(request.getParameter("adherents"))   ));
-            uneReservationVente.setOeuvreventeByIdOeuvrevente(uneOeuvreVenteAModifier);
+            uneReservationVente.setAdherent(unService.adherentById( Integer.parseInt(request.getParameter("adherents"))   ));
+            uneReservationVente.setOeuvrevente(uneOeuvreVenteAModifier);
             uneReservationVente.setStatut("en attente");
             //uneReservationVente.setDateReservation(new Date(request.getParameter("date")));
             String reserDate = request.getParameter("date");
