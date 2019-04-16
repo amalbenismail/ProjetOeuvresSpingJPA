@@ -5,7 +5,7 @@
 <body>
 <%@include file="navigation.jsp"%>
 <H1> Réservation d'une oeuvre en vente</H1>
-<form method="post" action="submitModifierOeuvreVente.htm">
+<form method="post" action="submitReservationVente.htm">
     <div class="col-md-12 well well-md">
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
@@ -21,7 +21,7 @@
         </div>
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
-            </div>
+            </div> 
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Prix </label>
@@ -36,10 +36,10 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Adherent</label>
             <div class="col-md-3">
-                <select name="proprietaires" class="form-control">
-                    <c:forEach items="${lesAdherents}" var="proprietaire">
-                        <option id=${proprietaire.getIdAdherent().toString()} value=${proprietaire.getIdAdherent()} >
-                                ${proprietaire.getPrenomAdherent()} ${proprietaire.getNomAdherent()}
+                <select name="adherents" class="form-control">
+                    <c:forEach items="${lesAdherents}" var="adherent">
+                        <option id=${adherent.getIdAdherent().toString()} value=${adherent.getIdAdherent()} >
+                                ${adherent.getPrenomAdherent()} ${adherent.getNomAdherent()}
                         </option>
                     </c:forEach>
                 </select>

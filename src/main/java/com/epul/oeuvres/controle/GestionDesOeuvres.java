@@ -187,7 +187,6 @@ public class GestionDesOeuvres {
             uneOeuvrePret.setTitreOeuvrepret(request.getParameter("txttitre"));
 
             uneOeuvrePret.setProprietaire(unServiceOeuvre.getProprietaireById( Integer.parseInt(request.getParameter("proprietaires"))   ));
-
             unServiceOeuvre.modifierOeuvrePret(uneOeuvrePret);
 
             destinationPage = "index";
@@ -197,44 +196,5 @@ public class GestionDesOeuvres {
         }
         return new ModelAndView(destinationPage);
     }
-
-    @RequestMapping(value = "reserverOeuvreVente.htm")
-    public ModelAndView reserverOeuvreVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage;
-        try {
-
-            int id = Integer.parseInt(request.getParameter("id"));
-            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
-            request.setAttribute("Oeuvre", unServiceOeuvre.consulterOeuvre(id));
-            Service unService = new Service();
-            request.setAttribute("lesAdherents", unService.consulterListeAdherents() );
-
-
-            destinationPage = "/vues/reserverOeuvreVente";
-        } catch (MonException e) {
-            request.setAttribute("MesErreurs", e.getMessage());
-            destinationPage = "/vues/Erreur";
-        }
-        return new ModelAndView(destinationPage);
-    }
-
-    @RequestMapping(value = "confirmerLesReservations.htm")
-    public ModelAndView confirmerLesReservations(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage;
-        try {
-            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
-            request.setAttribute("lesReservations", unServiceOeuvre.getReservationsEnAttente());
-            destinationPage = "/vues/confirmationDesOeuvres";
-        } catch (MonException e) {
-            request.setAttribute("MesErreurs", e.getMessage());
-            destinationPage = "/vues/Erreur";
-        }
-        return new ModelAndView(destinationPage);
-    }
-
-
-
-
-
 
 }
