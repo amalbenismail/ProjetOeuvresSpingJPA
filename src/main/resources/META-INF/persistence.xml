@@ -12,6 +12,7 @@
         <class>com.epul.oeuvres.metier.ReservationEntity</class>
         <class>com.epul.oeuvres.metier.UtilisateurEntity</class>
         <class>com.epul.oeuvres.metier.ReservationventeEntity</class>
+        <class>com.epul.oeuvres.metier.ReservationpretEntity</class>
 
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/baseoeuvre"/>
