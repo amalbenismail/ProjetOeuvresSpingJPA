@@ -195,27 +195,7 @@ public class ServiceOeuvre extends EntityService {
     }
 
 
-    public List<ReservationEntity> getReservationsEnAttente() throws MonException {
 
-        List<ReservationEntity> lesReservationsEnAttente = null;
-        try
-        {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            lesReservationsEnAttente = (List<ReservationEntity>)
-                    entitymanager.createQuery(
-                            "SELECT r FROM ReservationEntity r " +
-                                    "WHERE r.statut='en attente'").getResultList();
-            entitymanager.close();
-        }
-        catch (RuntimeException e)
-        {
-            new MonException("Erreur de lecture", e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return lesReservationsEnAttente;
-    }
 
 
 

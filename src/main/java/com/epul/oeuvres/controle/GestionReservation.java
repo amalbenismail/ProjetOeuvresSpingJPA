@@ -53,8 +53,8 @@ public class GestionReservation {
     public ModelAndView confirmerLesReservations(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
         try {
-            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
-            request.setAttribute("lesReservations", unServiceOeuvre.getReservationsEnAttente());
+            ServiceReservation unServiceReservation = new ServiceReservation();
+            request.setAttribute("lesReservations", unServiceReservation.getReservationsEnAttente());
             destinationPage = "/vues/confirmationDesOeuvres";
         } catch (MonException e) {
             request.setAttribute("MesErreurs", e.getMessage());
@@ -82,20 +82,15 @@ public class GestionReservation {
             uneReservationVente.setAdherent(unService.adherentById( Integer.parseInt(request.getParameter("adherents"))   ));
             uneReservationVente.setOeuvrevente(uneOeuvreVenteAModifier);
             uneReservationVente.setStatut("en attente");
-            //uneReservationVente.setDateReservation(new Date(request.getParameter("date")));
             String reserDate = request.getParameter("date");
-            SimpleDateFormat reserDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat reserDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date date = reserDateFormat.parse(reserDate);
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            System.out.println("______________DATEE"+sqlDate);
 
             uneReservationVente.setDateReservation(sqlDate);
-         //   uneReservationVente.setIdAdherent( Integer.parseInt(request.getParameter("adherents")));
-           // uneReservationVente.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvrevente")));
 
             unServiceReservation.insertReservation(uneReservationVente);
-          /*  uneReservationVente.set
-            unServiceOeuvre.reserverOeuvreVente(uneOeuvreVenteAModifier);*/
+
 
             destinationPage = "index";
         } catch (MonException e) {
