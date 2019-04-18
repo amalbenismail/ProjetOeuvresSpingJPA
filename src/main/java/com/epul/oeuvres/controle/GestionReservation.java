@@ -21,6 +21,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import static java.lang.Integer.parseInt;
 
 ///
 /// Les méthode du contrôleur répondent à des sollicitations
@@ -34,7 +37,7 @@ public class GestionReservation {
         String destinationPage;
         try {
 
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = parseInt(request.getParameter("id"));
             ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
             request.setAttribute("Oeuvre", unServiceOeuvre.consulterOeuvre(id));
             Service unService = new Service();
@@ -70,7 +73,7 @@ public class GestionReservation {
             // modification de l'état de l'oeuvre dans la table oeuvrevente
             ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
             OeuvreventeEntity uneOeuvreVenteAModifier = new OeuvreventeEntity();
-            uneOeuvreVenteAModifier = unServiceOeuvre.consulterOeuvre(Integer.parseInt(request.getParameter("idOeuvrevente")));
+            uneOeuvreVenteAModifier = unServiceOeuvre.consulterOeuvre(parseInt(request.getParameter("idOeuvrevente")));
             uneOeuvreVenteAModifier.setEtatOeuvrevente("R");
             unServiceOeuvre.modifierOeuvreVente(uneOeuvreVenteAModifier);
 
@@ -79,7 +82,7 @@ public class GestionReservation {
             ServiceReservation unServiceReservation = new ServiceReservation();
             ReservationventeEntity uneReservationVente = new ReservationventeEntity();
 
-            uneReservationVente.setAdherent(unService.adherentById( Integer.parseInt(request.getParameter("adherents"))   ));
+            uneReservationVente.setAdherent(unService.adherentById( parseInt(request.getParameter("adherents"))   ));
             uneReservationVente.setOeuvrevente(uneOeuvreVenteAModifier);
             uneReservationVente.setStatut("en attente");
             String reserDate = request.getParameter("date");
@@ -100,6 +103,37 @@ public class GestionReservation {
         return new ModelAndView(destinationPage);
     }
 
+
+    @RequestMapping(value = "submitConfirmationVente.htm")
+    public ModelAndView submitConfirmationVente(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        try {
+            ServiceReservation unServiceReservation = new ServiceReservation();
+            request.setAttribute("lesReservations", unServiceReservation.getReservationsEnAttente());
+
+            String idsReservations = request.getParameter("data");
+            System.out.println("HERE "+ idsReservations);
+         //   ArrayList<String> idsReservationList = new ArrayList<String>();
+            String[] ids = idsReservations.split(",");
+            System.out.println(ids);
+            for(int i=0;i<ids.length;i++)
+            {
+                if(!ids[i].isEmpty())
+                {
+                    ReservationventeEntity reservationAConfirmer = new ReservationventeEntity();
+                    reservationAConfirmer = unServiceReservation.getReservation(parseInt(ids[i]));
+                    reservationAConfirmer.setStatut("confirmee");
+                    unServiceReservation.confirmerLaReservation(reservationAConfirmer);
+                }
+
+            }
+            destinationPage = "index";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/vues/Erreur";
+        }
+        return new ModelAndView(destinationPage);
+    }
 
 
 

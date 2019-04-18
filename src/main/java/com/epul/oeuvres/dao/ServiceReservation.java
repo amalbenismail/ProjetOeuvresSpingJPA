@@ -48,5 +48,43 @@ public class ServiceReservation extends EntityService  {
         }
         return lesReservationsEnAttente;
     }
+    //1
+    // confirmerLaReservation
+
+    public ReservationventeEntity getReservation(int id) throws MonException {
+        List<ReservationventeEntity> reservationvente = null;
+
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+
+            reservationvente = (List<ReservationventeEntity>)entitymanager.createQuery("SELECT a FROM ReservationventeEntity a WHERE a.idReservation="+id).getResultList();
+            entitymanager.close();
+        }catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reservationvente.get(0);
+    }
+
+    public void confirmerLaReservation(ReservationventeEntity reservationvente) throws MonException {
+        try
+        {
+            EntityTransaction transac2 = startTransaction();
+            transac2.begin();
+            entitymanager.merge(reservationvente);
+            transac2.commit();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

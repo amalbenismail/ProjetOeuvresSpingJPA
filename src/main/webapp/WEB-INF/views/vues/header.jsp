@@ -13,6 +13,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- pour la confirmation des oeuvres besoin d'un js -->
+    <script src="/resources/js/reservation.js"></script>
+
     <link rel="stylesheet"  type="text/css" href="<c:url value="/resources/css/monStyle.css"/>">
 
     <script language="JavaScript">
