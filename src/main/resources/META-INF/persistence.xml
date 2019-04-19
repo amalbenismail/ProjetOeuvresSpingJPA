@@ -15,7 +15,7 @@
         <class>com.epul.oeuvres.metier.ReservationpretEntity</class>
 
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/baseoeuvre"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3336/baseoeuvre"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.username" value="userepul"/>
             <property name="hibernate.connection.password" value="epul"/>

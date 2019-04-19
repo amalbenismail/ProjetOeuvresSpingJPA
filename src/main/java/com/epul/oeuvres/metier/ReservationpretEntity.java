@@ -10,6 +10,8 @@ public class ReservationpretEntity {
     private int idReservationPret;
     private Date dateDebut;
     private Date dateFin;
+    private AdherentEntity adherent;
+    private OeuvrepretEntity oeuvrepret;
 
     @Id
     @Column(name = "idReservationPret")
@@ -36,6 +38,25 @@ public class ReservationpretEntity {
     public Date getDateFin() {
         return dateFin;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "id_oeuvrepret", referencedColumnName = "id_oeuvrepret", nullable = false)
+    public OeuvrepretEntity getOeuvrepret() {
+        return oeuvrepret;
+    }
+    public void setOeuvrepret(OeuvrepretEntity oeuvre) {
+        this.oeuvrepret = oeuvre;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_adherent", referencedColumnName = "id_adherent", nullable = false)
+    public AdherentEntity getAdherent() {
+        return adherent;
+    }
+    public void setAdherent(AdherentEntity adherent) {
+        this.adherent = adherent;
+    }
+
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;

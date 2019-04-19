@@ -195,6 +195,38 @@ public class ServiceOeuvre extends EntityService {
     }
 
 
+    public String getOeuvrePretReservationDatesById(int id){
+
+        List<ReservationpretEntity> uneOeuvrePret=null;
+        String dates="";
+        try{
+            EntityTransaction transaction = startTransaction();
+            transaction.begin();
+            //a WHERE a.idProprietaire="+id).getResultList();
+            uneOeuvrePret = ( List<ReservationpretEntity>)entitymanager.createQuery("SELECT r FROM ReservationpretEntity r WHERE r.oeuvrepret.idOeuvrepret="+id).getResultList();
+            entitymanager.close();
+
+            /*if(uneOeuvrePret.size() > 0  ){
+
+                return uneOeuvrePret.get(0);
+            }*/
+
+            for(int i=0; i < uneOeuvrePret.size(); i++){
+                dates+= uneOeuvrePret.get(i).getDateDebut()+"/"+uneOeuvrePret.get(i).getDateFin();
+                if( i != uneOeuvrePret.size()-1 ) dates+= "*";
+            }
+
+        }
+        catch (RuntimeException e){
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return dates;
+    }
+
+
 
 
 
