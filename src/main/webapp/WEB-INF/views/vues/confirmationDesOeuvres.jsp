@@ -11,7 +11,7 @@
 </div>
 
 <div class="container">
-    <a class="btn btn-secondary" href="../index.jsp" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
+    <a class="btn btn-secondary" href="index.htm" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
     <div class="container">
         <table class="table table-hover">
             <tr>
@@ -35,7 +35,14 @@
             </c:forEach>
         </table>
         <button class="btn btn-info" id="confirmerOeuvre" type="button" ><span
-                class="glyphicon glyphicon-pencil"></span> Confirmer</button>
+                class="glyphicon glyphicon-check"></span> Confirmer</button>
+        <button type="button" class="btn btn-danger"
+                onclick="{
+                            window.location = '../index.htm';
+                        }">
+            <span class="glyphicon glyphicon-remove"></span> Annuler
+
+        </button>
     </div>
 </div>
 <%@include file="footer.jsp"%>

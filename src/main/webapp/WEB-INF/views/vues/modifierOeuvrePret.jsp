@@ -47,7 +47,7 @@
                 Modifier
             </button>
 
-            <button type="button" class="btn btn-default btn-primary"
+            <button type="button" class="btn btn-danger"
                     onclick="{
                             window.location = '../index.htm';
                         }">

@@ -7,7 +7,7 @@
 <H1> Modification d'une oeuvre </H1>
 <form method="post" action="submitModifierOeuvreVente.htm">
     <div class="col-md-12 well well-md">
-        <h1>Modifier une oeuvre</h1>
+
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>
@@ -58,7 +58,7 @@
                 Modifier
             </button>
 
-            <button type="button" class="btn btn-default btn-primary"
+            <button type="button" class="btn btn-danger"
                     onclick="{
                             window.location = '../index.htm';
                         }">

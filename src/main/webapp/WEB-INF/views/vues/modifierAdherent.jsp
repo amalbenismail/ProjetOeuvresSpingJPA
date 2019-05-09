@@ -7,7 +7,6 @@
 <H1> Modification d'un adhérent </H1>
 <form method="post" action="submitModifierAdherent.htm">
     <div class="col-md-12 well well-md">
-        <h1>Modifier un adhérent</h1>
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>
@@ -47,12 +46,12 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-ok"></span>
-                Ajouter
+                Modifier
             </button>
 
-            <button type="button" class="btn btn-default btn-primary"
+            <button type="button" class="btn btn-danger"
                     onclick="{
-                            window.location = '../index.jsp';
+                            window.location = '../index.htm';
                         }">
                 <span class="glyphicon glyphicon-remove"></span> Annuler
 

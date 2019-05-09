@@ -5,7 +5,7 @@
 <body>
 <%@include file="navigation.jsp"%>
 <H1> Ajout d'une oeuvre </H1>
-<form method="post" action="insererOeuvreVente.htm">
+<form method="post" action="insererOeuvrePret.htm">
     <div class="col-md-12 well well-md">
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
@@ -22,12 +22,7 @@
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">Prix </label>
-            <div class="col-md-3">
-                <INPUT type="text" name="prixoeuvre" id="prix" class="form-control" min="0">
-            </div>
-        </div>
+
         <div class="row" >
             <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
             </div>

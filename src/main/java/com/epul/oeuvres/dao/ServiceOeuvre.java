@@ -116,6 +116,24 @@ public class ServiceOeuvre extends EntityService {
         }
     }
 
+    public void insererOeuvrePret(OeuvrepretEntity uneOeuvrePret) throws MonException {
+        try
+        {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            entitymanager.persist(uneOeuvrePret);
+            transac.commit();
+            entitymanager.close();
+        }
+        catch (RuntimeException e)
+        {
+            new MonException("Erreur de lecture", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void modifierOeuvreVente(OeuvreventeEntity uneOeuvreVente) throws MonException {
         try
         {

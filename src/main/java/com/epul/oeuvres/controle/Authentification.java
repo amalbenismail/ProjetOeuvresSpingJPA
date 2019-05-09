@@ -73,4 +73,16 @@ public class Authentification {
         return new ModelAndView(destinationPage);
     }
 
+
+    @RequestMapping(value = "deconnexion.htm")
+    public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage;
+        {
+            HttpSession session = request.getSession();
+            session.invalidate();
+            destinationPage = "/index";
+        }
+        return new ModelAndView(destinationPage);
+    }
+
 }

@@ -10,10 +10,8 @@
 </div>
 
 <div class="container">
-    <a class="btn btn-secondary" href="../index.jsp" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
-    <h2>Tableau des Oeuvres en vente</h2>
+    <a class="btn btn-secondary" href="index.htm" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
     <div class="container">
-        <h3>Liste des Oeuvres en Vente</h3>
         <table class="table table-hover">
             <tr>
                 <th class="col-md-1">Titre</th>
@@ -33,7 +31,7 @@
                     <td><a class="btn btn-info" href="reserverOeuvreVente.htm?id=${item.idOeuvrevente}" role="button" ${ item.etatOeuvrevente.equals('R') ? 'disabled="disabled"' : ''}><span
                             class="glyphicon glyphicon-pencil"></span> Réserver</a>
                         <a class="btn btn-danger" href="modifierOeuvreVente.htm?id=${item.idOeuvrevente}" role="button"><span
-                                class="glyphicon glyphicon-remove-circle"></span> Modifier</a>
+                                class="glyphicon glyphicon-edit"></span> Modifier</a>
                     </td>
                 </tr>
             </c:forEach>

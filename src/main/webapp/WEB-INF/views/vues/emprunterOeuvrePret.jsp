@@ -95,26 +95,7 @@
 
             $(document).ready(function(){
 
-
-                /*var date = $("#DateReservation").val();
-                var dateArray = date.split("/");
-                var dateDebut = dateArray[0];
-                var dateFin = dateArray[1];
-                var dateRange = [];
-                console.log("datedebut",dateArray);
-
-                // populate the array
-                for (var d = new Date(dateDebut); d <= new Date(dateFin); d.setDate(d.getDate() + 1)) {
-
-                    var date = new Date().toISOString().substr(0, 19);
-
-                    console.log("date : ",date);
-                    //dateRange.push( $('.datedebut').datepicker.format('yyyy-mm-dd', d));
-                }
-                */
-
-
-                var options={
+                    var options={
                     format: 'yyyy-mm-dd',
                     todayHighlight: true,
                     autoclose: true,
@@ -136,21 +117,6 @@
                 $('.datefin').datepicker(options);
 
 
-
-
-              /* $('input[name="daterange"]').daterangepicker({
-                   locale:{
-                       format: 'YYYY-MM-DD',
-                       separator: ' to '
-                   },
-                    isInvalidDate: function(date) {
-                        var disabled_start = moment('2019-04-17', 'YYYY-MM-DD');
-                        var disabled_end = moment('2019-04-25', 'YYYY-MM-DD');
-                        return date.isAfter(disabled_start) && date.isBefore(disabled_end);
-                    }
-                });*/
-
-
             });
 
 
@@ -159,12 +125,16 @@
 
         </script>
 
+        <div class="row" >
+            <div class="col-md-12" style ="border:none; background-color:transparent; height :20px;">
+            </div>
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-ok"></span>
                 Reserver
             </button>
 
-            <button type="button" class="btn btn-default btn-primary"
+            <button type="button" class="btn btn-danger"
                     onclick="{
                             window.location = '../index.htm';
                         }">

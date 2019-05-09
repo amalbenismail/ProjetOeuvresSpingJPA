@@ -10,9 +10,7 @@
 
 	<div class="container">
 		<a class="btn btn-secondary" href="index.htm" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
-		<h2>Tableau des Adhérents</h2>
 		<div class="container">
-			<h3>Liste des Adhérents</h3>
 			<table class="table table-hover">
 				<tr>
 					<th class="col-md-1">Numero</th>

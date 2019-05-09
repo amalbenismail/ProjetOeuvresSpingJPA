@@ -10,7 +10,7 @@
 </div>
 
 <div class="container">
-    <a class="btn btn-secondary" href="../index.jsp" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
+    <a class="btn btn-secondary" href="index.htm" role="button"><span class="glyphicon glyphicon-menu-left"></span> Retour accueil</a>
     <div class="container">
         <table class="table table-hover">
             <tr>
@@ -29,7 +29,7 @@
                     <td><a class="btn btn-info" href="reserverOeuvrePret.htm?id=${item.idOeuvrepret}" role="button"><span
                             class="glyphicon glyphicon-pencil"></span> Réserver</a>
                         <a class="btn btn-danger" href="modifierOeuvrePret.htm?id=${item.idOeuvrepret}" role="button"><span
-                                class="glyphicon glyphicon-remove-circle"></span> Modifier</a>
+                                class="glyphicon glyphicon-edit"></span> Modifier</a>
                     </td>
                 </tr>
             </c:forEach>

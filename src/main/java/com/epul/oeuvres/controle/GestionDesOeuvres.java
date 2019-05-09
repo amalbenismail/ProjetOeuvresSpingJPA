@@ -104,6 +104,23 @@ public class GestionDesOeuvres {
         return new ModelAndView(destinationPage);
     }
 
+    @RequestMapping(value = "ajouterOeuvrePret.htm")
+    public ModelAndView ajouterOeuvrePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+            request.setAttribute("lesProprietaires", unServiceOeuvre.getProprietaires());
+
+            destinationPage = "vues/ajouterOeuvrePret";
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "vues/Erreur";
+        }
+
+        return new ModelAndView(destinationPage);
+    }
+
     @RequestMapping(value = "insererOeuvreVente.htm")
     public ModelAndView insererOeuvreVente(HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
@@ -130,11 +147,18 @@ public class GestionDesOeuvres {
 
     @RequestMapping(value = "insererOeuvrePret.htm")
     public ModelAndView insererOeuvrePret(HttpServletRequest request,
-                                      HttpServletResponse response) throws Exception {
+                                           HttpServletResponse response) throws Exception {
 
         String destinationPage = "";
         try {
-            //OeuvreventeEntity oeuvre = new OeuvreventeEntity();
+            OeuvrepretEntity uneOeuvrePret = new OeuvrepretEntity();
+            ServiceOeuvre unServiceOeuvre = new ServiceOeuvre();
+
+            uneOeuvrePret.setTitreOeuvrepret(request.getParameter("txttitre"));
+            uneOeuvrePret.setProprietaire(unServiceOeuvre.getProprietaireById( Integer.parseInt(request.getParameter("proprietaires"))   ));
+
+            unServiceOeuvre.insererOeuvrePret(uneOeuvrePret);
+
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "vues/Erreur";
@@ -142,6 +166,8 @@ public class GestionDesOeuvres {
         destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
+
+
 
     @RequestMapping(value = "listerOeuvresPret.htm")
     public ModelAndView listerOeuvresPret(HttpServletRequest request, HttpServletResponse response) throws Exception {

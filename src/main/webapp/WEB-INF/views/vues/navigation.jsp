@@ -31,19 +31,30 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-user"></span>
-                        Oeuvres
+                        <span class="glyphicon glyphicon-book"></span>
+                        Oeuvres Vente
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="ajouterOeuvreVente.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout une oeuvre en vente </a></li>
-                        <li><a href="listerOeuvresVente.htm"><span class="glyphicon glyphicon-th-list"></span> Consulter les oeuvres en vente</a></li>
-                        <li><a href="listerOeuvresPret.htm"><span class="glyphicon glyphicon-th-list"></span> Consulter les oeuvres en pret</a></li>
-                        <li><a href="confirmerLesReservations.htm"><span class="glyphicon glyphicon-th-list"></span>Confirmation des reservations</a></li>
+                        <li><a href="ajouterOeuvreVente.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout Oeuvre</a></li>
+                        <li><a href="listerOeuvresVente.htm"><span class="glyphicon glyphicon-th-list"></span> Liste Oeuvres vente</a></li>
+                        <li><a href="confirmerLesReservations.htm"><span class="glyphicon glyphicon-check"></span> Confirmation des reservations</a></li>
 
                     </ul>
                 </li>
-                <li><a href="javascript:fermer()"><span class="glyphicon glyphicon-log-out"></span> Quitter</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-book"></span>
+                        Oeuvres Pret
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ajouterOeuvrePret.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout Oeuvre </a></li>
+                        <li><a href="listerOeuvresPret.htm"><span class="glyphicon glyphicon-th-list"></span> Liste Oeuvres pret</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="deconnexion.htm"><span class="glyphicon glyphicon-log-out"></span> Quitter</a></li>
                 </c:if>
 
             </ul>
